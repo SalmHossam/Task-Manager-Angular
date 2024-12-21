@@ -2,6 +2,19 @@ import { Component,computed,EventEmitter,input,Input, Output } from '@angular/co
 import { DUMMY_USERS } from '../dummy-users';
 
 // const randomIndex=Math.floor(Math.random()*DUMMY_USERS.length)
+ 
+//both (alieas)type and inteface are correct 
+type User={
+  id:string;
+  name:string;
+  avatar:string;
+}
+
+// interface User{
+//   id:string;
+//   name:string;
+//   avatar:string;
+// }
 @Component({
   selector: 'app-user',
   imports: [],
@@ -19,13 +32,17 @@ export class UserComponent {
   
   //using zone.js
   get imagePath(){
-    return 'assets/users/'+ this.avatar
+    return 'assets/users/'+ this.user.avatar
   }
 
   //@Input Decrator
-  @Input({required:true}) avatar!: string;
-  @Input({required:true}) name!: string;
-  @Input()id !:string;
+  // @Input({required:true}) avatar!: string;
+  // @Input({required:true}) name!: string;
+  // @Input()id !:string;
+
+  //instead of declaring each variable separate we can declare 
+  //in form of object contains all variables
+  @Input({required:true})user!:User;
   //input using signals
   // avatar = input.required<string>();
   // name = input.required<string>();
@@ -40,8 +57,9 @@ export class UserComponent {
   onSelectUser(){
     // const randomIndex=Math.floor(Math.random()*DUMMY_USERS.length)
     // this.selectedUser.set(DUMMY_USERS[randomIndex])
-
-    this.select.emit(this.id);
+    
+    //while using event emmiter we can call emit function
+    this.select.emit(this.user.id);
   }
 
 }
