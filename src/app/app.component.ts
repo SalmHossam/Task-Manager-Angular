@@ -15,8 +15,9 @@ export class AppComponent {
   title = 'firstProject';
   users=DUMMY_USERS;
 
-  //intial value for the selected user id
-  selectedUserId='u1';
+  //the value of selected user can be empty 
+  selectedUserId?:string;
+track: any;
   
  /**
  * Getter: selectedUser
